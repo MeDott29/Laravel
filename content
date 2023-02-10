@@ -1,0 +1,42 @@
+
+    <div class="row">
+        <div class{="small-12 columns">
+            <h2>{{ $league->name }}</h2>
+            <ul class="breadcrumbs">
+                <li><a href="{{ route('fantasy.league.index', [$league->slug, $season->slug]) }}">{{ $league->name }}</a></li>
+                <li><a href="{{ route('fantasy.season.index', [$league->slug, $season->slug]) }}">{{ $season->name }}</a></li>
+                <li>Divisions</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 columns">
+            <div class="row">
+                <div class="small-12 columns">
+                    <h3>Manage Divisions</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="small-12 columns">
+                    <div class="row">
+                        <div class="small-2 columns">
+                            <a class="button" href="{{ route('fantasy.division.create', [$league->slug, $season->slug]) }}">Create Division</a>
+                        </div>
+                    </div>
+                    @if ($divisions->count())
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Teams</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($divisions as $division)
+                                    <tr>
+                                        <td>{{ $division->name }}</td>
+                                        <td>{{ $division->teams()->count() }}</td>
+                                        <td>
+                                            <a href="{{ route('fantasy.division.edit', [$league->slug, $season->slug, $division->id]) }}">Edit</a>
+                                            <a href="{{ route('fantasy
